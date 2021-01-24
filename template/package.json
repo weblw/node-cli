@@ -1,0 +1,15 @@
+{
+  "name": "template",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.0"
+  },
+  "keywords": [],
+  "author": "weblw <872993425@qq.com> (https://weblw.me/)",
+  "license": "MIT"
+}
