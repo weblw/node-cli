@@ -2,12 +2,16 @@ const child_precess = require('child_process')
 const chalk = require('chalk')
 const fs = require('fs')
 
-const currentPath = process.cwd() + '/node_modules/chalk'
+const currentPath = process.cwd() + '/node_modules/mycli-plugin'
 
 module.exports = type => {
   return new Promise((resolve, reject) => {
-    fs.exists(currentPath, ext => {
-      if (ext) {
+    fs.access(currentPath, err => {
+      if (err) {
+        console.log( 
+          chalk.red('please install mycli-react-webpack-plugin')   
+        )
+      } else {        
         const children = child_precess.fork(currentPath + '/index.js')
         children.on('message', message => {
           const msg = JSON.parse(message)
@@ -23,10 +27,6 @@ module.exports = type => {
           cwdPath: process.cwd(),
           type: type || 'build'
         }))
-      } else {
-        console.log( 
-          chalk.red('please install mycli-react-webpack-plugin')   
-        )
       }
     })
   })
