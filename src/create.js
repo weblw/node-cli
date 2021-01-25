@@ -23,7 +23,9 @@ function revisePackageJson(res, sourcePath) {
       if (err) throw err
       const { name } = res
       let json = data.toString()
-      json = json.replace(/name/g, name.trim())
+      json = JSON.parse(json)
+      json.name = name
+      json = JSON.stringify(json)
       const path = process.cwd() + '/' + name + '/package.json'
       fs.writeFile(path, Buffer.from(json), () => {
         green('创建文件' + path)
